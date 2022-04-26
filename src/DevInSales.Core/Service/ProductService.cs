@@ -5,7 +5,7 @@ using DevInSales.Core.Interface;
 
 namespace DevInSales.Core.Service
 {
-    public class ProductService : IProduct
+    public class ProductService : IProductService
     {
         private readonly DataContext _context;
 
@@ -17,9 +17,16 @@ namespace DevInSales.Core.Service
             _context.SaveChanges();
         }
 
-        public Product ObterProduct(int id)
+        public Product ObterProductPorId(int id)
         {
-            throw new NotImplementedException();
+            return _context.Products.Find(id);
+        }
+
+        // verifica se o nome já existe na base de dados
+        public bool ProdutoExiste(string nome)
+        {
+            var produtos  = _context.Products.Where(produto => (produto.Name == nome)).ToList();
+            return produtos.Count > 0 ? true:false;
         }
     }
 }
