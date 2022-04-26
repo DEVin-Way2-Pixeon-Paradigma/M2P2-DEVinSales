@@ -12,9 +12,14 @@ namespace DevInSales.Core.Service
         public ProductService(DataContext context) {
             _context = context;
         }
-        public void Atualizar(Product produto)
+        public void Atualizar()
         {
-            
+            _context.SaveChanges();
+        }
+
+        public Product ObterProduct(int id)
+        {
+            throw new NotImplementedException();
         }
     }
 }
