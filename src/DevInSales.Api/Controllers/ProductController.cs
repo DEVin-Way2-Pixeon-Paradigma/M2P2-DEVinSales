@@ -14,6 +14,13 @@ namespace DevInSales.Api.Controllers
         {
             _productService = productService;
         }
+        [HttpGet("{id}")]
+        public ActionResult<Product> ObterProdutoPorId(int id) {
+            var produto = _productService.ObterProductPorId(id);
+            if(produto == null ) 
+                NotFound();
+            return Ok(produto);
+        }
 
         [HttpPut("{id}")]
         public ActionResult AtualizarProduto(Product product,int id) {
