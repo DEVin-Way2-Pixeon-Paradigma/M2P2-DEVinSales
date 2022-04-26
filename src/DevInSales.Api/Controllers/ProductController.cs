@@ -18,15 +18,17 @@ namespace DevInSales.Api.Controllers
         [HttpPut("{id}")]
         public ActionResult AtualizarProduto(Product product,int id) {
             var produto  = _productService.ObterProductPorId(id);
-            // var produto = new Product("asdasd",2);
+            
             if(produto == null ) 
                 return NotFound();
             if(!ModelState.IsValid || product.Name.ToLower() == "string") 
                 return BadRequest("O objeto tem que ser construido com um nome e nome tem que ser diferente de string");
             if(_productService.ProdutoExiste(product.Name)) 
-                return BadRequest("objeto já existe");
+                return BadRequest("esse nome já existe na base de dados");
 
-            return Ok(produto);
+            _productService.Atualizar(produto,product);
+
+            return NoContent();
         }
     }
 }

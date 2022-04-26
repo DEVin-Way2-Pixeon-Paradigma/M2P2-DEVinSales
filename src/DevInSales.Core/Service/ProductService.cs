@@ -12,11 +12,13 @@ namespace DevInSales.Core.Service
         public ProductService(DataContext context) {
             _context = context;
         }
-        public void Atualizar()
+        public void Atualizar(Product produtoOriginal, Product produtoAtualizado)
         {
+            produtoOriginal.AtualizarDados(produtoAtualizado);
             _context.SaveChanges();
         }
 
+        // obtém o produto por id 
         public Product ObterProductPorId(int id)
         {
             return _context.Products.Find(id);
