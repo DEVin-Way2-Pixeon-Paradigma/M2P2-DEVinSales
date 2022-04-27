@@ -13,21 +13,19 @@ namespace DevInSales.Core.Data.Mappings
     {
         public void Configure(EntityTypeBuilder<Product> builder)
         {
-            builder.ToTable("Product");
+            builder.ToTable("Products");
 
             // Opcional, pois por convenção nossa propriedade já seria a chave primária
             builder.HasKey(p => p.Id);
 
             builder.Property(p => p.Name)
-                .HasColumnType("varchar(150)")
-                .HasMaxLength(150)
+                .HasColumnType("varchar(255)")
                 .IsUnicode(false)
                 .IsRequired();
 
             builder.Property(p => p.SuggestedPrice)
                 .HasColumnType("decimal(18,2)")
                 .HasMaxLength(20)
-                .IsUnicode(false)
                 .IsRequired();
         }
     }
