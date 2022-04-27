@@ -4,24 +4,24 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace DevInSales.Core.Data.Migrations
+namespace DevInSales.Core.Migrations
 {
-    public partial class Inicial : Migration
+    public partial class Inicial_101 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Product",
+                name: "Products",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Name = table.Column<string>(type: "varchar(150)", unicode: false, maxLength: 150, nullable: false),
-                    SuggestedPrice = table.Column<decimal>(type: "numeric(18,2)", unicode: false, maxLength: 20, nullable: false)
+                    Name = table.Column<string>(type: "varchar(255)", unicode: false, nullable: false),
+                    SuggestedPrice = table.Column<decimal>(type: "numeric(18,2)", maxLength: 20, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Product", x => x.Id);
+                    table.PrimaryKey("PK_Products", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -30,10 +30,10 @@ namespace DevInSales.Core.Data.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Email = table.Column<string>(type: "varchar(150)", unicode: false, maxLength: 150, nullable: false),
-                    Password = table.Column<string>(type: "varchar(50)", unicode: false, maxLength: 50, nullable: false),
+                    Email = table.Column<string>(type: "varchar(150)", unicode: false, nullable: false),
+                    Password = table.Column<string>(type: "varchar(50)", unicode: false, nullable: false),
                     Name = table.Column<string>(type: "text", nullable: false),
-                    BirthDate = table.Column<DateTime>(type: "date", unicode: false, nullable: false)
+                    BirthDate = table.Column<DateTime>(type: "date", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -44,7 +44,7 @@ namespace DevInSales.Core.Data.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Product");
+                name: "Products");
 
             migrationBuilder.DropTable(
                 name: "Users");
